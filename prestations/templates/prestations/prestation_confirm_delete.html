@@ -7,16 +7,29 @@
 
 {% block content %}
 
+{% if messages %}
+<div class="col-lg-3 color03">
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+</div>
+{% endif %}
 
-<h1>Confirmer la suppression de la prestation</h1>
+<h1 class="text-5xl text-gray-500 mb-6 text-center font-semibold">Confirmer la suppression de la prestation</h1>
 
-<p> Etes-vous sûr de vouloir supprimer la prestation du client : {{ prestation.client_name }} ? </p>
+<p class="text-center text-3xl text-gray-700 font-semibold my-7">
+    Etes-vous sûr de vouloir supprimer la prestation du client : {{ prestation.client_name}} ? </p>
 
 
-<form method="post">
+<form method="post" class="flex justify-center">
     {% csrf_token %}
-    <a href="{% url 'detail_prestation' prestation.id %}"></a>
-    <button type="submit">Confirmer la suppression</button>
+    <a href="{% url 'detail_prestation' prestation.id %}"
+        class="bg-blue-500 text-white px-3 py-5 mr-4 border rounded-md hover:bg-blue-700 transition-all duration-300 w-[250px] text-center">Annuler</a>
+    <button type="submit"
+        class="bg-red-500 text-white px-3 py-5 mr-4 border rounded-md hover:bg-red-700 transition-all duration-300 w-[250px] text-center">Confirmer
+        la suppression</button>
 </form>
 
 

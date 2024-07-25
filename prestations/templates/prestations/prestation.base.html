@@ -5,18 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
 </head>
 
 <body>
-    <nav>
-        <a href="{% url 'list_prestation' %}">Liste des prestations</a>
-        <a href="{% url 'create_prestation' %}">Créer une prestation</a>
+    <nav class="text-center mt-7 mb-7">
+        <a href="{% url 'list_prestation' %}"
+            class="bg-blue-500 text-white px-3 py-5 mr-4 border rounded-md hover:bg-blue-700 transition-all duration-300 ">Liste
+            des
+            prestations</a>
+        <a href="{% url 'create_prestation' %}"
+            class="bg-blue-500 text-white px-3 py-5 mr-4 border rounded-md hover:bg-blue-700 transition-all duration-300 ">Créer
+            une prestation</a>
     </nav>
-    {% block content %}
+    <main class="p-3">
+        {% block content %}
 
 
 
-    {% endblock content %}
+        {% endblock content %}
+    </main>
 
 </body>
 

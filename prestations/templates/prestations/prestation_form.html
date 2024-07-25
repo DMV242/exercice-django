@@ -4,22 +4,36 @@
 {% extends 'prestations/prestation.base.html' %}
 
 {% block content %}
+
+
+
+
+
+
 {% if is_update %}
-<h1>Mettre à jour la prestation</h1>
+<h1 class="text-center text-3xl font-semibold text-gray-700 mb-7">Mettre à jour la prestation</h1>
 {% else %}
-<h1>Créer une nouvelle prestation</h1>
+<h1 class="text-center text-3xl font-semibold text-gray-700 mb-7">Créer une nouvelle prestation</h1>
 {% endif %}
 
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">
-        {% if is_update %}
-        Mettre à jour la prestation
-        {% else %}
-        Enregistrer une prestation
-        {% endif %}
-    </button>
+
+
+
+<form method="post" class="flex items-center justify-center">
+    <div class="flex items-center flex-col  rounded-xl bg-white bg-clip-border text-gray-700 shadow-2xl p-6 w-max">
+        {% csrf_token %}
+        <div class="">
+            {{form.as_div}}
+        </div>
+        <button type="submit"
+            class="bg-blue-500 text-white px-3 py-5 mr-4 border rounded-md hover:bg-blue-700 transition-all duration-300 w-full ">
+            {% if is_update %}
+            Mettre à jour la prestation
+            {% else %}
+            Enregistrer une prestation
+            {% endif %}
+        </button>
+    </div>
 </form>
 
 

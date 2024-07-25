@@ -6,7 +6,8 @@ from prestations.serializers import (
     ClientSerializer,
     SupplierSerializer,
 )
-
+from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib import messages
 
 from prestations.permissions import IsAuthenticatedOrReadOnly
 from django.views.generic import (
@@ -42,11 +43,12 @@ class DetailPrestation(DetailView):
 # TODO: Créez une vue pour créer une nouvelle prestation
 
 
-class CreatePresation(CreateView):
+class CreatePresation(CreateView, SuccessMessageMixin):
     model = Prestation
     template_name = "prestations/prestation_form.html"
     form_class = PrestationForm
     success_url = reverse_lazy("list_prestation")
+    success_message = "Prestation crée avec succès"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -73,6 +75,10 @@ class UpdatePrestation(UpdateView):
         return reverse_lazy(
             "detail_prestation", kwargs={"prestation_id": self.object.id}
         )
+
+    def form_valid(self, form):
+        messages.success(self.request, "Modification effectuée avec succès")
+        return super().form_valid(form)
 
 
 # Vue pour supprimer une prestation existante

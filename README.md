@@ -1,6 +1,6 @@
 # Étude de cas technique back-end
 
->⏱️ Temps imparti : 1 jour (à compter de la date d’envoi du sujet)
+>⏱️ Temps imparti : 1 jour max (à compter de la date d’envoi du sujet)
 
 ## Description
 

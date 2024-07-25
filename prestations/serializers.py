@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Prestation, Client, Supplier
-from django.contrib.auth import authenticate
 from django.utils.translation import gettext_lazy as _
 
 

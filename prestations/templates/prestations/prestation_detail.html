@@ -1,2 +1,23 @@
 <!-- templates/prestations/prestation_list.html -->
 <!-- TODO: Créez le template pour lister toutes les prestations -->
+{% extends 'prestations/prestation.base.html' %}
+
+
+
+{% block content %}
+
+<h1>Détail pour la prestation du client : {{ prestation.client_name}}</h1>
+<p>Fournisseur : {{ prestation.supplier_name }}</p>
+
+<p>Type de prestation : {{ prestation.type_prestation }}</p>
+<p>Prix de l'offre : {{ prestation.offer_price }}</p>
+<p>Frais de service : {{ prestation.service_fee}}</p>
+
+<p>Crée le : {{ prestation.created_at }}</p>
+<p> Statut du client : {{prestation.status_client }} </p>
+<p> Statut du fournisseur : {{ prestation.status_supplier }}</p>
+
+<a href="{% url 'delete_prestation' prestation.id %}"> supprimer une prestation </a>
+<a href="{% url 'update_prestation' prestation.id %}"> Mettre à jour une prestation </a>
+
+{% endblock %}

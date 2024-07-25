@@ -1,2 +1,26 @@
 <!-- templates/prestations/prestation_form.html -->
 <!-- TODO: Créez le template pour le formulaire de création et de mise à jour d'une prestation -->
+
+{% extends 'prestations/prestation.base.html' %}
+
+{% block content %}
+{% if is_update %}
+<h1>Mettre à jour la prestation</h1>
+{% else %}
+<h1>Créer une nouvelle prestation</h1>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">
+        {% if is_update %}
+        Mettre à jour la prestation
+        {% else %}
+        Enregistrer une prestation
+        {% endif %}
+    </button>
+</form>
+
+
+{% endblock content %}

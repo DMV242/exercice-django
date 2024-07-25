@@ -1,2 +1,23 @@
 <!-- templates/prestations/prestation_confirm_delete.html -->
 <!-- TODO: Créez le template pour confirmer la suppression d'une prestation -->
+
+{% extends 'prestations/prestation.base.html' %}
+
+
+
+{% block content %}
+
+
+<h1>Confirmer la suppression de la prestation</h1>
+
+<p> Etes-vous sûr de vouloir supprimer la prestation du client : {{ prestation.client_name }} ? </p>
+
+
+<form method="post">
+    {% csrf_token %}
+    <a href="{% url 'detail_prestation' prestation.id %}"></a>
+    <button type="submit">Confirmer la suppression</button>
+</form>
+
+
+{% endblock %}

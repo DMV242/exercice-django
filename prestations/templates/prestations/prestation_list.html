@@ -1,2 +1,61 @@
 <!-- templates/prestations/prestation_list.html -->
 <!-- TODO: Créez le template pour lister toutes les prestations -->
+
+{% extends 'prestations/prestation.base.html' %}
+
+{% block content %}
+
+<h1>Liste des prestations</h1>
+
+<ul>
+    {% if prestations|length > 0%}
+    <section>
+        <ul>
+            {% for prestation in prestations %}
+            <li>
+                <a href="{% url 'detail_prestation' prestation.id %}">
+                    Prestation numéro ° {{ prestation.id }}
+                </a>
+                <h2>Description</h2>
+                <div <span> Fournissseur : {{ prestation.supplier_name }}</span> /
+                    <span> client : {{ prestation.client_name }}</span>
+                    <p>type : {{ prestation.type_prestation }}</p>
+                </div>
+
+            </li>
+
+            {% endfor %}
+        </ul>
+    </section>
+    {% else %}
+    <h3> Aucune prestation n'est disponible</h3>
+    <p>Vous pouvez en créer une avec le menu créer une prestation</p>
+    {% endif %}
+    <section>
+        <div>
+            <span>
+                {% if is_paginated %}
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; première</a>
+                <a href="?page={{ page_obj.previous_page_number }}">précédente</a>
+                {% endif %}
+
+                <span>
+                    Page {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">suivante</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">dernière &raquo;</a>
+                {% endif %}
+                {% endif %}
+            </span>
+        </div>
+
+    </section>
+
+
+
+
+
+    {% endblock content %}

@@ -1,0 +1,33 @@
+<!-- templates/prestations/prestation_list.html -->
+<!-- TODO: Créez le template pour lister toutes les prestations -->
+
+{% extends 'prestations/prestation.base.html' %}
+
+{% block content %}
+
+<h1>Liste des clients</h1>
+
+<ul>
+    {% if clients|length > 0%}
+
+    {% for client in clients %}
+    <li>
+
+        <h2>Description</h2>
+        <div <span>{{ client.supplier_name }}</span>
+            <span> client : {{ client.supplier_name }}</span>
+            <p>type : {{ client.type_client }}</p>
+        </div>
+
+    </li>
+    {% endfor %}
+    {% else %}
+    <h3> Aucun client n'est disponible</h3>
+    <p>Vous pouvez en créer un avec le menu créer un client</p>
+    {% endif %}
+
+
+
+</ul>
+
+{% endblock content %}

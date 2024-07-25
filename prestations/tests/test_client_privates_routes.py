@@ -39,6 +39,14 @@ class PrivateClientTest(TestCase):
         self.assertEqual(data["first_name"], client.first_name)
         self.assertEqual(data["last_name"], client.last_name)
 
+    def test_delete_client(self):
+        client = Client.objects.create(
+            first_name="John", last_name="Doe", email="johndoe@gmail.com"
+        )
+
+        res = self.client.delete(detail_url_client(client.id))
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
     def test_partial_update_client(self):
         client = Client.objects.create(
             first_name="John", last_name="Doe", email="johndoe@gmail.com"

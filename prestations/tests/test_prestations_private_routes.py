@@ -78,6 +78,34 @@ class PrivateClientTest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data["id"], prestation.id)
 
+    def test_delete_detail_prestation(self):
+        client = Client.objects.create(
+            first_name="John", last_name="Doe", email="johndoe@gmail.com"
+        )
+
+        supplier = Supplier.objects.create(
+            first_name="David",
+            last_name="Mvoula",
+            email="davidmvoula@gmail.com",
+            company_name="Mvoula Inc",
+        )
+
+        prestation = Prestation.objects.create(
+            client=client,
+            supplier=supplier,
+            offer_price="100.00",
+            service_fee="20.00",
+            status_client="Action requise",
+            status_supplier="Action requise",
+            type_prestation="Informatique",
+            charge_id="12",
+            refund_id="34",
+            charge_capture=False,
+        )
+
+        res = self.client.delete(detail_url_prestation(prestation.id), format="json")
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
     def test_partial_update_prestation(self):
         client = Client.objects.create(
             first_name="John", last_name="Doe", email="johndoe@gmail.com"

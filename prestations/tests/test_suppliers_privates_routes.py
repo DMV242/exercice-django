@@ -29,6 +29,17 @@ class PrivateSupplierTest(TestCase):
         self.assertEqual(data["last_name"], payload["last_name"])
         self.assertEqual(data["email"], payload["email"])
 
+    def test_delete_supplier(self):
+        supplier = Supplier.objects.create(
+            first_name="John",
+            last_name="Doe",
+            email="johndoe@gmail.com",
+            company_name="Doe Inc",
+        )
+
+        res = self.client.delete(detail_url_supplier(supplier.id))
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+
     def test_retreive_detail_supplier(self):
         supplier = Supplier.objects.create(
             first_name="John",
